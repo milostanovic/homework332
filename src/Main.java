@@ -103,10 +103,10 @@ public class Main {
         }
 
         //implement all tractors off when fuel = 0
-        for (int i = 0; i < actTractors-1; i++) {
+        for (int i = 0; i < activeTractors.size(); i++) {
             activeTractors.get(i).offTractor();
         }
-        System.out.println(" >>> ALL TRACTORS ARE OUT OF FUEL AND ARE NOW OFF  <<< ");
+        System.out.println(" >>> ALL TRACTORS ARE OUT OF FUEL AND ARE NOW SET OFF  <<< ");
 
     }
 }

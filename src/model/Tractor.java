@@ -29,12 +29,13 @@ public class Tractor implements Runnable{
                 throw new RuntimeException(e);
             }
         }
+        System.out.println("Warning! Fuel status reached 10% by Tractor ID -> " + tractorId + " STOPPING");
         this.stopTractor();
     }
 
     public void stopTractor(){
         statusOfTheTractor = TRACTOR_STATUS.STOPPED;
-        System.out.println("Warning! Fuel status reached 10% by Tractor ID -> " + tractorId + " " + statusOfTheTractor);
+
     }
 
     public boolean isTractorStopped(){
