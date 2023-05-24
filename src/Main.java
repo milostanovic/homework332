@@ -32,20 +32,23 @@ public class Main {
         ArrayList<Tractor> workingTractors = new ArrayList<>();
         ArrayList<Tractor> fuelLowTractors = new ArrayList<>();
         ArrayList<Tractor> fuelReadyTractors = new ArrayList<>();
+        ArrayList<Tractor> activeTractors = new ArrayList<>();
 
 
         //check fuel statuses of all assigned, make list of fuel ready
         for (int i = 0; i < farm.assignedTractors.size(); i++) {
-            if(farm.assignedTractors.get(i).tractorFuelStatus <= 10)
+            if(farm.assignedTractors.get(i).tractorFuelStatus <= 10) {
                 fuelLowTractors.add(farm.assignedTractors.get(i));
+                activeTractors.add(farm.assignedTractors.get(i));
+            }
             else if (farm.assignedTractors.get(i).tractorFuelStatus > 10)
                 fuelReadyTractors.add(farm.assignedTractors.get(i));
             if (fuelReadyTractors.size() == numOTractors) {
                 break;
             }
         }
-        int activeTractors = fuelReadyTractors.size();
-        System.out.println("ACTIVE TRACTORS! " + activeTractors);
+        int actTractors = fuelReadyTractors.size();
+        System.out.println("ACTIVE TRACTORS! " + actTractors);
         System.out.println("Number of fuel low tractors currently is " + fuelLowTractors.size());
         System.out.println("Number of ready tractors currently is " + fuelReadyTractors.size());
 
@@ -80,7 +83,7 @@ public class Main {
         }
 
 
-        while(fuelReadyTractors.size() != 0 && workingTractors.size() != 0) {
+        while(workingTractors.size() != 0) {
             ArrayList<Tractor> tempTractors = new ArrayList<>();
             for (int i = 0; i < workingTractors.size(); i++) {
                 if(workingTractors.get(i).isTractorStopped())
@@ -91,26 +94,19 @@ public class Main {
                         newTractor.changeImplementToTractor(farm.getCorrectImplement(season));
                         tempTractors.add(newTractor);
                         fuelReadyTractors.remove(0);
-                        System.out.println("Tractor ID " + newTractor.tractorId + " started working with implement " + implement);
                     }
                 }else {
                     tempTractors.add(workingTractors.get(i));
                 }
             }
             workingTractors = tempTractors;
-            //implement all tractors off when fuel ready = 0
         }
 
-        Thread.sleep(5000);
-
-        for (int i = 0; i < activeTractors; i++){
-            if(activeTractors == Tractor.stopped){
-                System.out.println(" >>> STOPPED NUMBER <<< " + Tractor.stopped);
-            }else{
-                System.out.println(" >>> still working <<< " + Tractor.stopped);
-            }
+        //implement all tractors off when fuel = 0
+        for (int i = 0; i < actTractors-1; i++) {
+            activeTractors.get(i).offTractor();
         }
-
+        System.out.println(" >>> ALL TRACTORS ARE OUT OF FUEL AND ARE NOW OFF  <<< ");
 
     }
 }

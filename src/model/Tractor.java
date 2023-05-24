@@ -9,9 +9,8 @@ public class Tractor implements Runnable{
 
     public String tractorId;
 
-    public static int stopped = 0;
-
-    //private String tractorType;
+    private String[] typeOfTractor = { "JohnDeere", "NewHolland"};
+    private String[] ImplementAttached = {"Mower","Sprayer filled with water", "Sprayer filled with pesticides","Driller","None"};
 
     public int tractorFuelStatus;
 
@@ -21,6 +20,7 @@ public class Tractor implements Runnable{
 
     public void run(){
         statusOfTheTractor = TRACTOR_STATUS.WORKING;
+        System.out.println("Tractor ID " + tractorId + " started working with implement " + typeOfImplementAttached);
         for(int i=tractorFuelStatus; i>10; i--){
             try {
                 //System.out.println("Tractor ID " + tractorId + " Info! Fuel deprecated by 1%! " + statusOfTheTractor);
@@ -30,17 +30,19 @@ public class Tractor implements Runnable{
             }
         }
         this.stopTractor();
-        System.out.println("Warning! Fuel status reached 10% by Tractor ID -> " + tractorId + " " + statusOfTheTractor);
     }
 
-    public int stopTractor(){
-        stopped ++;
+    public void stopTractor(){
         statusOfTheTractor = TRACTOR_STATUS.STOPPED;
-        return stopped;
+        System.out.println("Warning! Fuel status reached 10% by Tractor ID -> " + tractorId + " " + statusOfTheTractor);
     }
 
     public boolean isTractorStopped(){
         return TRACTOR_STATUS.STOPPED == statusOfTheTractor;
+    }
+
+    public void offTractor(){
+        statusOfTheTractor = TRACTOR_STATUS.OFF;
     }
 
     public void attachImplementToTractor(String implement){
@@ -51,8 +53,6 @@ public class Tractor implements Runnable{
         typeOfImplementAttached = implement;
     }
 
-    private String[] typeOfTractor = { "JohnDeere", "NewHolland"};
-    private String[] ImplementAttached = {"Mower","Sprayer filled with water", "Sprayer filled with pesticides","Driller","None"};
 
     private String getTractorType(){
             int rnd = new Random().nextInt(typeOfTractor.length);
