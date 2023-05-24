@@ -37,7 +37,6 @@ public class Tractor implements Runnable{
         statusOfTheTractor = TRACTOR_STATUS.STOPPED;
 
     }
-
     public boolean isTractorStopped(){
         return TRACTOR_STATUS.STOPPED == statusOfTheTractor;
     }

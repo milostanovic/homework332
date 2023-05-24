@@ -2,7 +2,6 @@ package model;
 import java.util.UUID;
 
 public class Implement {
-
     //String implementId = UUID.randomUUID().toString();
     //System.out.println("Implement ID is " + implementId);
     public String checkImplement(String implementType){

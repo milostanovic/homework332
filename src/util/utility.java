@@ -6,8 +6,6 @@ import model.Farm;
 import java.util.ArrayList;
 
 public class utility {
-
-
     ArrayList<Tractor> tractors = new ArrayList<>();
 
     public void initializeTractors(int numOTractors, Farm farm, String farmId) {

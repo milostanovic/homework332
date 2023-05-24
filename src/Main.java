@@ -107,6 +107,5 @@ public class Main {
             activeTractors.get(i).offTractor();
         }
         System.out.println(" >>> ALL TRACTORS ARE OUT OF FUEL AND ARE NOW SET OFF  <<< ");
-
     }
 }

@@ -51,7 +51,6 @@ public class Farm {
         }
         return implement;
     }
-
     public ArrayList<Tractor> assignedTractors = new ArrayList<>();
 
     public void assignTractorsToFarm(Tractor tractorAssigned){
