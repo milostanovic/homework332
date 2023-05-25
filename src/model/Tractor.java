@@ -24,7 +24,7 @@ public class Tractor implements Runnable{
         for(int i=tractorFuelStatus; i>10; i--){
             try {
                 //System.out.println("Tractor ID " + tractorId + " Info! Fuel deprecated by 1%! " + statusOfTheTractor);
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -43,10 +43,6 @@ public class Tractor implements Runnable{
 
     public void offTractor(){
         statusOfTheTractor = TRACTOR_STATUS.OFF;
-    }
-
-    public void attachImplementToTractor(String implement){
-        typeOfImplementAttached = implement; //
     }
 
     public void changeImplementToTractor(String implement){

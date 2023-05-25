@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Farm {
 
-    private Integer numberOfTractorsAssignedToFarm;
+    public Integer numberOfTractorsAssignedToFarm;
     private String[] typesOfFarm = {
         "Apples","Citrus","Grapes"
     };
@@ -14,8 +14,8 @@ public class Farm {
             0.0, 0.0, 0.0, 0.0
     };
 
-    private String nameOfFarm = "";
-    private String season = "";
+    public String nameOfFarm = "";
+    public String season = "";
 
     private ArrayList<Tractor> workingTractors = new ArrayList<>();
 

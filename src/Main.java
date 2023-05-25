@@ -1,13 +1,13 @@
 import model.Farm;
 import model.Tractor;
 import util.utility;
-import model.Implement;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    public static <List> void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
 
         Scanner enterFarmName = new Scanner(System.in);
@@ -19,11 +19,15 @@ public class Main {
         String season = enterSeason.nextLine();
 
         Farm farm = new Farm(farmName, season);
+        farm.nameOfFarm = farmName;
         String farmId = farm.giveFarmId(farmName);
+        farm.season = season;
 
         Scanner number = new Scanner(System.in);
         System.out.println("Please enter number of tractors:");
         int numOTractors = number.nextInt();
+        farm.numberOfTractorsAssignedToFarm = numOTractors;
+
 
         //initialize tractors and assign
         utility init = new utility();
@@ -47,8 +51,7 @@ public class Main {
                 break;
             }
         }
-        int actTractors = fuelReadyTractors.size();
-        System.out.println("ACTIVE TRACTORS! " + actTractors);
+
         System.out.println("Number of fuel low tractors currently is " + fuelLowTractors.size());
         System.out.println("Number of ready tractors currently is " + fuelReadyTractors.size());
 
@@ -74,15 +77,13 @@ public class Main {
             fuelReadyTractors.remove(workingTractors.get(i));
         }
 
-
         System.out.println("prepare for start!");
 
-        //start the engines
+        //start the engines, first batch of 3
         for (Tractor t : workingTractors) {
             new Thread(t).start();
         }
-
-
+        //wait for first fuel low, then engage next one
         while(workingTractors.size() != 0) {
             ArrayList<Tractor> tempTractors = new ArrayList<>();
             for (int i = 0; i < workingTractors.size(); i++) {
